@@ -23,5 +23,5 @@ exit
 Download [jar file HERE](https://github.com/lsvih/webpage-classify-label-backend/releases/latest)
 
 ```
-java -jar webpage_label-1.0.0.jar
+java -jar webpage_label-1.0.0.jar --server.port=9999
 ```
