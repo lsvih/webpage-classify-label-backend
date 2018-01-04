@@ -24,6 +24,7 @@ public class Label {
     @NotBlank(message="url 不能为空")
     private String url;
 
+    @Column(nullable = false)
     private int clazz;
 
     @Column(nullable = false, updatable = false)
