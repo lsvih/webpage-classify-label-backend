@@ -7,16 +7,16 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.util.Date;
 
 @Entity
 @Table(name = "webpage_label")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
+@JsonIgnoreProperties(value = {"createdAt"},
         allowGetters = true)
 public class Label {
     @Id
@@ -37,6 +37,8 @@ public class Label {
 
     @Column(nullable = true)
     private String IP;
+
+    private String html;
 
     public Long getId() {
         return id;
@@ -80,4 +82,11 @@ public class Label {
         this.createdAt = createdAt;
     }
 
+    public void setHtml(String html){
+        this.html = html;
+    }
+
+    public String getHtml(){
+        return html;
+    }
 }

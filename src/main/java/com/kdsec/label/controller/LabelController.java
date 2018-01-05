@@ -2,14 +2,12 @@ package com.kdsec.label.controller;
 
 import com.kdsec.label.model.Label;
 import com.kdsec.label.repository.LabelRepository;
-import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import javax.xml.ws.Response;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -63,7 +61,6 @@ public class LabelController {
         }
         label.setUrl(labelDetails.getUrl());
         label.setClazz(labelDetails.getClazz());
-
         Label updatedLabel = labelRepository.save(label);
         return ResponseEntity.ok(updatedLabel);
     }
