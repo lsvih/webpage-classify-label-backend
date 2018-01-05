@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -37,7 +38,8 @@ public class LabelController {
     }
 
     @PostMapping("/labels")
-    public Label createLabel(@Valid @RequestBody Label label) {
+    public Label createLabel(HttpServletRequest request,@Valid @RequestBody Label label) {
+        label.setIP(request.getRemoteAddr());
         return labelRepository.save(label);
     }
 

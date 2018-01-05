@@ -2,8 +2,10 @@ package com.kdsec.label.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,7 +23,7 @@ public class Label {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message="url 不能为空")
+    @NotBlank(message = "url 不能为空")
     private String url;
 
     @Column(nullable = false)
@@ -32,10 +34,8 @@ public class Label {
     @CreatedDate
     private Date createdAt;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
+    @Column(nullable = true)
+    private String IP;
 
     public Long getId() {
         return id;
@@ -53,8 +53,8 @@ public class Label {
         this.url = url;
     }
 
-    @Min(value=0, message="分类最小为0")  
-    @Max(value=3, message="分类最大为3")  
+    @Min(value = 0, message = "分类最小为0")
+    @Max(value = 3, message = "分类最大为3")
     public int getClazz() {
         return clazz;
     }
@@ -63,20 +63,20 @@ public class Label {
         this.clazz = clazz;
     }
 
+    public String getIP() {
+        return IP;
+    }
+
+    public void setIP(String IP) {
+        this.IP = IP;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
 }
