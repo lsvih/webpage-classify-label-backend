@@ -24,6 +24,7 @@ public class Label {
     private Long id;
 
     @NotBlank(message = "url 不能为空")
+    @Column(unique = true)
     private String url;
 
     @Column(nullable = false)
