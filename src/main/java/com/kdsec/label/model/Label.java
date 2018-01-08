@@ -38,7 +38,20 @@ public class Label {
     @Column(nullable = true)
     private String IP;
 
+    @Transient
     private String html;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Transient
+
+    private String image;
 
     public Long getId() {
         return id;

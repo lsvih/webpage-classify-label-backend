@@ -2,6 +2,7 @@ package com.kdsec.label.controller;
 
 import com.kdsec.label.model.Label;
 import com.kdsec.label.repository.LabelRepository;
+import com.kdsec.label.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,18 +39,19 @@ public class LabelController {
     }
 
     @PostMapping("/labels")
-    public ResponseEntity<Label> createLabel(HttpServletRequest request, @Valid @RequestBody Label label) {
+    public ResponseEntity createLabel(HttpServletRequest request, @Valid @RequestBody Label label) {
         label.setIP(request.getRemoteAddr());
-        Label saveLabel;
         try {
-            saveLabel = labelRepository.save(label);
+            labelRepository.save(label);
+            FileService file = new FileService();
+            file.save(label.getId(), label.getHtml(), label.getImage());
         } catch (Exception e) {
             ResponseEntity error = ResponseEntity
                     .status(409)
-                    .body("{\"message\":\"此 url 已存在\",\"CODE\":\"409\",\"info\":\"" + e.getMessage() + "\"}");
+                    .body("{\"message\":\"" + e.getMessage() + "\",\"CODE\":\"409\",\"}");
             return error;
         }
-        return ResponseEntity.ok(saveLabel);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/labels/{id}")
