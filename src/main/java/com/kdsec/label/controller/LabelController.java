@@ -24,6 +24,13 @@ public class LabelController {
         return labelRepository.findAll();
     }
 
+    @GetMapping("/findLabelByUrl")
+    public Label getLabelByUrl(HttpServletRequest request){
+        String url = request.getParameter("url");
+        return labelRepository.findLabelByUrl(url);
+
+    }
+
     @GetMapping("/ping")
     public String testState() {
         return "OK";
