@@ -24,7 +24,7 @@ public class Label {
     private Long id;
 
     @NotBlank(message = "url 不能为空")
-    @Column(unique = true)
+    @Column(unique = true, columnDefinition = "TEXT")
     private String url;
 
     @Column(nullable = false)
@@ -35,7 +35,7 @@ public class Label {
     @CreatedDate
     private Date createdAt;
 
-    @Column(nullable = true)
+    @Column()
     private String IP;
 
     @Transient

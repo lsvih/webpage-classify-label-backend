@@ -25,10 +25,9 @@ public class LabelController {
     }
 
     @GetMapping("/findLabelByUrl")
-    public Label getLabelByUrl(HttpServletRequest request){
+    public Label getLabelByUrl(HttpServletRequest request) {
         String url = request.getParameter("url");
         return labelRepository.findLabelByUrl(url);
-
     }
 
     @GetMapping("/ping")
@@ -53,10 +52,9 @@ public class LabelController {
             FileService file = new FileService();
             file.save(label.getId(), label.getHtml(), label.getImage());
         } catch (Exception e) {
-            ResponseEntity error = ResponseEntity
+            return ResponseEntity
                     .status(409)
                     .body("{\"message\":\"" + e.getMessage() + "\",\"CODE\":\"409\",\"}");
-            return error;
         }
         return ResponseEntity.ok().build();
     }
