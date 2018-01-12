@@ -4,7 +4,7 @@
 # Name of output file is "dataset"
 
 # Install dependency:
-# pip3 install cv2
+# pip3 install opencv-python
 # pip3 install opencv-contrib-python
 # pip3 install pymysql
 
