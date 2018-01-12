@@ -58,8 +58,8 @@ def load_data():
                            interpolation=cv2.INTER_AREA)[:WIDTH]
         # once image's height shorter than width, fill it with white
         if image.shape[0] < WIDTH:
-            image = np.concatenate(image, np.tile(np.array(
-                [[255, 255, 255]] * WIDTH), (WIDTH - image.shape[0], 1, 1))).astype("uint8")
+            image = np.concatenate((image, np.tile(np.array(
+                [[255, 255, 255]] * WIDTH), (WIDTH - image.shape[0], 1, 1)))).astype("uint8")
         dataset["images"].append(image)
         clazz = query.findClazz(image_id)
         if clazz is not False:
